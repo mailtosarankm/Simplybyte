@@ -16,6 +16,7 @@ pipeline{
             steps{
                 git branch: 'main', credentialsId: 'github_simplybyte_credentials', url: 'https://github.com/mailtosarankm/Simplybyte.git'
         }
+}
         stage('print path'){
             steps{
                 sh 'echo $PATH'
@@ -52,5 +53,4 @@ pipeline{
             }
         }
     }
-}
 }
