@@ -2,6 +2,7 @@ pipeline{
     agent any
     tools{
         maven 'mvn3.9.9'
+        git 'Git'
     }
         environment{
         DOCKER_IMAGE='simplybyte-calculator-jenkins-local'
