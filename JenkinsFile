@@ -15,11 +15,13 @@ pipeline{
         stage('git clone'){
             steps{
                 git branch: 'main', credentialsId: 'github_simplybyte_credentials', url: 'https://github.com/mailtosarankm/Simplybyte.git'
-        }
+        }                                                                                                                    
 }
+stage('version') {
 steps {
     bat 'mvn -v'
     bat 'git --version'
+}
 }
 stage('Debug') {
     steps {
