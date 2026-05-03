@@ -31,7 +31,7 @@ stage('Debug') {
 }
 stage('print path'){
             steps{
-                bat 'echo $PATH'
+                bat 'echo %PATH%'
             }
         }
         stage('maven test stage'){
@@ -51,17 +51,17 @@ stage('print path'){
         }
         stage('Docker image build'){
             steps{
-                bat 'docker build -t $DOCKER_IMAGE:$BUILD_NUMBER .'
+                bat 'docker build -t %DOCKER_IMAGE:$BUILD_NUMBER% .'
             }
         }
         stage('Docker old container remove'){
             steps{
-                bat 'docker rm -f $CONTAINER_NAME || true'
+                bat 'docker rm -f %CONTAINER_NAME% || true'
             }
         }
         stage('Docker new container run'){
             steps{
-                bat 'docker run -d -p 8091:8090 --name=$CONTAINER_NAME $DOCKER_IMAGE:$BUILD_NUMBER'
+                bat 'docker run -d -p 8091:8090 --name=%CONTAINER_NAME $DOCKER_IMAGE:$BUILD_NUMBER%'
             }
         }
     }
