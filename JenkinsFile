@@ -56,7 +56,7 @@ stage('print path'){
         }
         stage('Docker image build'){
             steps{
-                bat 'docker build -t %DOCKER_IMAGE:$BUILD_NUMBER% .'
+                bat 'docker build -t %DOCKER_IMAGE%:%BUILD_NUMBER% .'
             }
         }
         stage('Docker old container remove'){
@@ -66,7 +66,7 @@ stage('print path'){
         }
         stage('Docker new container run'){
             steps{
-                bat 'docker run -d -p 8091:8090 --name=%CONTAINER_NAME $DOCKER_IMAGE:$BUILD_NUMBER%'
+                bat 'docker run -d -p 8091:8090 --name=%CONTAINER_NAME% %DOCKER_IMAGE%:%BUILD_NUMBER%'
             }
         }
     }
