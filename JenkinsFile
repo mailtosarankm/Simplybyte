@@ -1,8 +1,11 @@
 pipeline{
     agent any
-    tools{
-        maven 'mvn3.9.9'
+ options {
+        skipDefaultCheckout(true)
+    }
+     tools {
         git 'Git'
+        maven 'mvn3.9.9'
     }
         environment{
         DOCKER_IMAGE='simplybyte-calculator-jenkins-local'
@@ -12,11 +15,13 @@ pipeline{
             choice(name: 'ENVIRONMENT' , choices: ['testing','prod'], description: 'environemnt')
     }
     stages{
-        stage('git clone'){
-            steps{
-                git branch: 'main', credentialsId: 'github_simplybyte_credentials', url: 'https://github.com/mailtosarankm/Simplybyte.git'
-        }                                                                                                                    
-}
+                stage('git clone') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'github_simplybyte_credentials',
+                    url: 'https://github.com/mailtosarankm/Simplybyte.git'
+            }
+        }
 stage('version') {
 steps {
     bat 'mvn -v'
