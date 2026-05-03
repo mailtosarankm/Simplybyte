@@ -28,17 +28,18 @@ steps {
     bat 'git --version'
 }
 }
-stage('Debug') {
-    steps {
-        bat 'where mvn'
-        bat 'where git'
-    }
-}
 stage('print path'){
             steps{
                 bat 'echo %PATH%'
             }
         }
+stage('Debug') {
+    steps {
+        bat 'echo mvn path: %MAVEN_HOME%'
+        bat 'git --version'
+    }
+}
+
         stage('maven test stage'){
             when{
                 expression{
